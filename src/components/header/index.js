@@ -7,8 +7,8 @@ function Header() {
             <h2>Consulta de países</h2>
 
             <div>
-                <Link to="/inicio">Inicio</Link>
-                <Link to="/login">Logar</Link>
+                <Link to="/">Inicio</Link>
+                <Link to="/logar">Logar</Link>
             </div>
         </header>
     )
