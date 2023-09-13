@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import './style.css'
+import './detalhesStyle.css'
 
 function DetalhesPais() {
     const [paises, setPaises] = useState([]);
