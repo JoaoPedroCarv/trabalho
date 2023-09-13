@@ -36,7 +36,16 @@ function DetalhesPais() {
                     />
                     <h3>Capital: {pais.capital}</h3>
                     <h3>População: {pais.population}</h3>
-                    {/* Adicione mais detalhes conforme necessário */}
+                    <h3>Lado da rua: {pais.car.side}</h3>
+                    <h3>Formato do código postal: {pais.postalCode.format}</h3>
+                    <h3>Região e sub região: {pais.region} / {pais.subregion}</h3>
+                    <h2>Brasão de armas</h2>
+                    <img
+                        src={pais.coatOfArms.png}
+                        alt=''
+                        width="450"
+                        height="350"
+                    />
                 </div>
             ))}
         </div>

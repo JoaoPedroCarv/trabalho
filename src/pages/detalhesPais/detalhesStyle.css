@@ -3,3 +3,11 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.coluna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
