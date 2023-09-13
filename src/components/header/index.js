@@ -7,8 +7,8 @@ function Header() {
             <h2>Suas notas On-line</h2>
 
             <div className="">
-                <Link to="/verNotas">Notas</Link>
-                <Link to="/novaNota">Adicionar nota</Link>
+                <Link to="/inicio">Inicio</Link>
+                <Link to="/login">Logar</Link>
             </div>
         </header>
     )

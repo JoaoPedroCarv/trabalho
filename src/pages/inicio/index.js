@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './style.css'
 
@@ -7,12 +8,12 @@ function Inicio() {
   const [pais, setPais] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async () => {
+  const pesquisado = async () => {
     setLoading(true);
 
     try {
-      const response = await axios.get(`https://restcountries.com/v3.1/name/${pesquisa}`);
-      setPais(response.data);
+      const resposta = await axios.get(`https://restcountries.com/v3.1/name/${pesquisa}`);
+      setPais(resposta.data);
     } catch (error) {
       console.error('Erro ao buscar países:', error);
     }
@@ -22,8 +23,8 @@ function Inicio() {
 
   return (
     <div className='principal'>
-        <div className='coluna'>
-      <h1>Lista de Países</h1>
+      <div className='coluna'>
+        <h1>Lista de Países</h1>
         <input
           type="text"
           placeholder="Digite o nome do país"
@@ -31,28 +32,32 @@ function Inicio() {
           onChange={(e) => setPesquisa(e.target.value)}
           className='pesquisar'
         />
-        <button className='botao' onClick={handleSearch}>Pesquisar</button>
+        <button className='botao' onClick={pesquisado}>Pesquisar</button>
       </div>
       {loading ? (
         <p>Carregando...</p>
       ) : (
         <div>
-        {pais.map((pais) => (
-          <div className='pais' key={pais.cca2}>
-            <img 
-              src={pais.flags.png}
-              
-              width="150"
-              height="110"
-            />
-            <h2 className='nomePais'>{pais.name.common}</h2>
-            
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
+          {pais.map((pais) => (
+            <div className='pais' key={pais.cca2}>
+              <Link className='link' to={`/detalhes/${pais.cca2}`}>
+                <img
+                  src={pais.flags.png}
+                  alt=''
+                  width="150"
+                  height="100"
+                />
+                <h2 className='nomePais'>{pais.name.common}</h2>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )
+      }
+    </div >
   );
 }
 
 export default Inicio;
+
+//<h2 className='nomePais'>{pais.name.common}</h2>
