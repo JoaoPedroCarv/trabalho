@@ -6,6 +6,7 @@ import Inicio from '../pages/inicio';
 import DetalhesPais from '../pages/detalhesPais';
 import CriarConta from '../pages/criarConta';
 import Comentarios from '../pages/comentarios';
+import CriarComentario from '../pages/novoComentario';
 
 
 import Private from './private'
@@ -18,6 +19,7 @@ function RoutesApp() {
       <Route path="/" element={<Inicio />} />
       <Route path="/detalhes/:id" element={<DetalhesPais />} />
       <Route path="/comentarios" element={<Comentarios />} />
+      <Route path='/novoComentario' element={<Private><CriarComentario /></Private>} />
     </Routes>
   )
 }

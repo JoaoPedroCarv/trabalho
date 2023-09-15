@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../services/firebaseConnection";
+import './comentarios.css'
+import { Link } from "react-router-dom";
 
 function Comentarios() {
   const [comentarios, setComentarios] = useState([]);
@@ -26,9 +28,9 @@ function Comentarios() {
   }
 
   return (
-    <div className="princ">
+    <div className="titulo">
       <h1>Comentários</h1>
-      <div className="lista">
+      <div className="comentarios">
         {comentarios.map((comentario) => (
           <div key={comentario.id} className="comentario">
             <h2>{comentario.nomePais}</h2>
@@ -38,7 +40,8 @@ function Comentarios() {
           </div>
         ))}
       </div>
-    </div>
+      <Link className="link" to='/novoComentario'>Adicione um comentário</Link>
+    </div >
   );
 }
 
