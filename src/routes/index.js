@@ -5,6 +5,7 @@ import Login from '../pages/login';
 import Inicio from '../pages/inicio';
 import DetalhesPais from '../pages/detalhesPais';
 import CriarConta from '../pages/criarConta';
+import Comentarios from '../pages/comentarios';
 
 
 import Private from './private'
@@ -16,6 +17,7 @@ function RoutesApp() {
       <Route path="/registrar" element={<CriarConta />} />
       <Route path="/" element={<Inicio />} />
       <Route path="/detalhes/:id" element={<DetalhesPais />} />
+      <Route path="/comentarios" element={<Comentarios />} />
     </Routes>
   )
 }

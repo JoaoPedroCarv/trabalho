@@ -47,7 +47,7 @@ body {
     font-weight: bold;
 }
 
-h1,
+inicio h1,
 h2 {
     color: black;
 }
@@ -55,4 +55,9 @@ h2 {
 .link {
     display: flex;
     flex-direction: row;
+}
+
+.comen {
+    margin-left: 300px;
+    margin-top: 10px;
 }

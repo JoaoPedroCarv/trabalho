@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './inicioStyle.css'
+import './inicio.css'
 
 function Inicio() {
   const [pesquisa, setPesquisa] = useState('');
@@ -60,4 +60,3 @@ function Inicio() {
 
 export default Inicio;
 
-//<h2 className='nomePais'>{pais.name.common}</h2>
