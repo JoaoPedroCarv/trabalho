@@ -20,6 +20,7 @@ function RoutesApp() {
       <Route path="/detalhes/:id" element={<DetalhesPais />} />
       <Route path="/comentarios" element={<Comentarios />} />
       <Route path='/novoComentario' element={<Private><CriarComentario /></Private>} />
+
     </Routes>
   )
 }

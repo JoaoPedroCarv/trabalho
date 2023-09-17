@@ -9,7 +9,7 @@ function Header() {
             <div>
                 <Link to="/">Início</Link>
                 <Link to="/comentarios">Ver comentários</Link>
-                <Link to="/logar">Logar</Link>
+                <Link to="/perfil">Perfil</Link>
             </div>
         </header>
     )

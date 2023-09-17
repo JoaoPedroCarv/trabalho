@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
+import React, { useEffect, useState, useContext } from "react";
+import { collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../services/firebaseConnection";
 import './comentarios.css'
 import { Link } from "react-router-dom";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { AuthContext } from "../../context/auth";
 function Comentarios() {
   const [comentarios, setComentarios] = useState([]);
+  const { user } = useContext(AuthContext);
+
 
   useEffect(() => {
     consultarComentarios();
@@ -20,28 +24,56 @@ function Comentarios() {
           nomePais: doc.data().nomePais,
           experiencia: doc.data().experiencia,
           valor: doc.data().valor,
-          Dias: doc.data().Dias
+          Dias: doc.data().Dias,
+          nomeUsuario: doc.data().nomeUsuario,
+          idUsuario: doc.data().idUsuario
         });
       });
       setComentarios(listaComentarios);
     });
   }
 
+  async function excluirComentario(comentario) {
+    if (user) {
+      if (user.uid === comentario.idUsuario) {
+        try {
+          await deleteDoc(doc(db, "comentarios", comentario.id));
+          consultarComentarios();
+          alert("Comentário excluído com sucesso!");
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        alert("Você pode excluir apenas os seus comentários.");
+      }
+    } else {
+      alert("Você precisa estar logado para excluir seus comentários.");
+    }
+  }
   return (
-    <div className="titulo">
+    <div className="tudo">
       <h1>Comentários</h1>
       <div className="comentarios">
         {comentarios.map((comentario) => (
-          <div key={comentario.id} className="comentario">
-            <h2>{comentario.nomePais}</h2>
-            <p>{comentario.experiencia}</p>
-            <p>{comentario.valor}</p>
-            <p>{comentario.Dias}</p>
+          <div key={comentario.id} className="comentario-box">
+            <div className="lixeira">
+              <FontAwesomeIcon
+                icon={faTrash}
+                onClick={() => excluirComentario(comentario)}
+              />
+            </div>
+            <div className="comentario">
+              <h2><strong>Usuario:</strong> {comentario.nomeUsuario}</h2>
+              <h2><strong>Pais:</strong> {comentario.nomePais}</h2>
+              <p><strong>Comentario:</strong> {comentario.experiencia}</p>
+              <p><strong>Valor gasto:</strong> R${comentario.valor}</p>
+              <p><strong>Quantos dias viajou:</strong> {comentario.Dias}</p>
+            </div>
           </div>
         ))}
       </div>
       <Link className="link" to='/novoComentario'>Adicione um comentário</Link>
-    </div >
+    </div>
   );
 }
 

@@ -2,7 +2,6 @@ import { useState, createContext, useEffect } from 'react';
 import { auth, db } from '../services/firebaseConnection';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -55,7 +54,7 @@ function AuthProvider({ children }) {
         storageUser(data);
         setLoadingAuth(false);
         toast.success("Bem-vindo(a) de volta!")
-        navigate("/inicio")
+        navigate("/")
       })
       .catch((error) => {
         console.log(error);
@@ -91,7 +90,7 @@ function AuthProvider({ children }) {
             storageUser(data);
             setLoadingAuth(false);
             toast.success("Seja bem-vindo ao sistema!")
-            navigate("/inicio")
+            navigate("/comentarios")
 
           })
       })

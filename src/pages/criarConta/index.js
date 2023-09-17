@@ -55,7 +55,7 @@ export default function CriarConta() {
                     </button>
                 </form>
 
-                <Link to="/">Já possui uma conta? Faça login</Link>
+                <Link to="/logar">Já possui uma conta? Faça login</Link>
 
             </div>
         </div>

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, setDoc, doc } from "firebase/firestore";
 import { db } from "../../services/firebaseConnection";
 import './novoComentario.css'
+import { AuthContext } from "../../context/auth"; 
+import { connect } from 'react-redux'
 
-function CriarComentario() {
+function CriarComentario(props) {
     const [nomePais, setNomePais] = useState("");
     const [experiencia, setExperiencia] = useState("");
     const [valor, setValor] = useState(0);
-    const [dias, setDias] = useState(0);
     const [comentarioCriado, setComentarioCriado] = useState(false);
+
+    const { user } = useContext(AuthContext); 
 
     const criarNovoComentario = async (e) => {
         e.preventDefault();
@@ -19,18 +22,29 @@ function CriarComentario() {
                 nomePais,
                 experiencia,
                 valor,
-                Dias: dias
+                Dias: props.dias,
+                nomeUsuario: user.nome, 
+                idUsuario: user.uid
             };
 
-            await addDoc(collection(db, "notas"), novoComentario);
+            const comentarioRef = doc(collection(db, "comentarios"));
+            await setDoc(comentarioRef, novoComentario);
             setComentarioCriado(true);
             setNomePais("");
             setExperiencia("");
             setValor(0);
-            setDias(0);
+            props.zerar();
         } catch (error) {
             console.error("Erro ao criar o comentário:", error);
         }
+    };
+
+    const adicionarDia = () => {
+        props.incremento(); // Use a ação para incrementar dias.
+    };
+
+    const removerDia = () => {
+        props.decremento(); // Use a ação para decrementar dias.
     };
 
     return (
@@ -58,7 +72,7 @@ function CriarComentario() {
                 <label>
                     Valor:
                     <input
-                        type="number"
+                        type="text"
                         value={valor}
                         onChange={(e) => setValor(parseFloat(e.target.value))}
                     />
@@ -67,11 +81,13 @@ function CriarComentario() {
                 <label>
                     Dias:
                     <input
-                        type="number"
-                        value={dias}
-                        onChange={(e) => setDias(parseInt(e.target.value))}
+                        type="text"
+                        value={props.dias} 
+                        onChange={(e) => props.incremento(parseInt(e.target.value))}
                     />
                 </label>
+                <button type="button" onClick={adicionarDia}>Adicionar Dia</button>
+                <button type="button" onClick={removerDia}>Remover Dia</button>
                 <br />
                 <button type="submit">Criar novo Comentário</button>
             </form>
@@ -79,11 +95,25 @@ function CriarComentario() {
             {comentarioCriado && (
                 <div>
                     <p>Novo comentário criado com sucesso!</p>
-                    <Link to="/verComentarios">Voltar para a Lista de Comentários</Link>
+                    <Link to="/comentarios">Voltar para a Lista de Comentários</Link>
                 </div>
             )}
         </div>
     );
 }
 
-export default CriarComentario;
+const mapState = (state) => {
+    return {
+        dias: state.count 
+    };
+};
+
+const mapAssociate = (dispatch) => {
+    return {
+        incremento: () => dispatch({ type: 'INCREMENTO' }),
+        decremento: () => dispatch({ type: 'DECREMENTO' }),
+        zerar: () => dispatch({ type: 'ZERAR' })
+    };
+};
+
+export default connect(mapState, mapAssociate)(CriarComentario);
