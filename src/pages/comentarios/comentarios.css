@@ -42,11 +42,17 @@
 
   .lixeira {
     position: absolute;
-    top: 5px; /* Ajuste a posição vertical da lixeira conforme necessário */
-    left: 5px; /* Ajuste a posição horizontal da lixeira conforme necessário */
-    background-color: red; /* Cor de fundo da lixeira (você pode personalizar) */
-    color: white; /* Cor do ícone da lixeira (você pode personalizar) */
+    top: 5px; 
+    left: 5px; 
+    background-color: red; 
+    color: white;
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
+  }
+
+  .caneta {
+    position: absolute; 
+    top: 0; 
+    right: 40px; 
   }

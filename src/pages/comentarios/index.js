@@ -4,7 +4,7 @@ import { db } from "../../services/firebaseConnection";
 import './comentarios.css'
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/auth";
 function Comentarios() {
   const [comentarios, setComentarios] = useState([]);
@@ -61,6 +61,11 @@ function Comentarios() {
                 icon={faTrash}
                 onClick={() => excluirComentario(comentario)}
               />
+            </div>
+            <div>
+             <Link to={`/editarComentario/${comentario.id}`}>
+              <FontAwesomeIcon icon={faEdit} className="caneta" />
+              </Link>
             </div>
             <div className="comentario">
               <h2><strong>Usuario:</strong> {comentario.nomeUsuario}</h2>

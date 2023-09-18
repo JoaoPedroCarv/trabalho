@@ -3,6 +3,7 @@ import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AuthContext } from '../../context/auth'
+import './conta.css'
 
 export default function CriarConta() {
     const [name, setName] = useState('');
@@ -21,9 +22,9 @@ export default function CriarConta() {
     }
 
     return (
-        <div className="container-center">
-            <div className="login">
-                <div className="login-area">
+        <div className="tudo">
+            <div >
+                <div >
 
                 </div>
 

@@ -48,7 +48,7 @@ function CriarComentario(props) {
     };
 
     return (
-        <div className="princ">
+        <div className="tudo">
             <h1>Criar um novo comentário</h1>
             <form onSubmit={criarNovoComentario}>
                 <label>
@@ -86,7 +86,7 @@ function CriarComentario(props) {
                         onChange={(e) => props.incremento(parseInt(e.target.value))}
                     />
                 </label>
-                <button type="button" onClick={adicionarDia}>Adicionar Dia</button>
+                <button className="btn1" type="button" onClick={adicionarDia}>Adicionar Dia</button>
                 <button type="button" onClick={removerDia}>Remover Dia</button>
                 <br />
                 <button type="submit">Criar novo Comentário</button>

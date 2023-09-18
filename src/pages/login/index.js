@@ -2,6 +2,7 @@ import { useState, useContext } from 'react'
 
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth'
+import './login.css'
 
 
 export default function Login() {
@@ -21,7 +22,7 @@ export default function Login() {
 
 
   return (
-    <div >
+    <div className='tudo' >
       <div >
         <div >
         </div>
