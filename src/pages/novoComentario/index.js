@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { collection, setDoc, doc } from "firebase/firestore";
 import { db } from "../../services/firebaseConnection";
 import './novoComentario.css'
-import { AuthContext } from "../../context/auth"; 
+import { AuthContext } from "../../context/auth";
 import { connect } from 'react-redux'
 
 function CriarComentario(props) {
@@ -12,7 +12,7 @@ function CriarComentario(props) {
     const [valor, setValor] = useState(0);
     const [comentarioCriado, setComentarioCriado] = useState(false);
 
-    const { user } = useContext(AuthContext); 
+    const { user } = useContext(AuthContext);
 
     const criarNovoComentario = async (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ function CriarComentario(props) {
                 experiencia,
                 valor,
                 Dias: props.dias,
-                nomeUsuario: user.nome, 
+                nomeUsuario: user.nome,
                 idUsuario: user.uid
             };
 
@@ -40,11 +40,11 @@ function CriarComentario(props) {
     };
 
     const adicionarDia = () => {
-        props.incremento(); // Use a ação para incrementar dias.
+        props.incremento();
     };
 
     const removerDia = () => {
-        props.decremento(); // Use a ação para decrementar dias.
+        props.decremento();
     };
 
     return (
@@ -61,7 +61,7 @@ function CriarComentario(props) {
                 </label>
                 <br />
                 <label>
-                    Experiência:
+                    Como foi sua experiência:
                     <input
                         type="text"
                         value={experiencia}
@@ -70,7 +70,7 @@ function CriarComentario(props) {
                 </label>
                 <br />
                 <label>
-                    Valor:
+                    Quanto você gastou nesse país:
                     <input
                         type="text"
                         value={valor}
@@ -79,10 +79,10 @@ function CriarComentario(props) {
                 </label>
                 <br />
                 <label>
-                    Dias:
+                    Por quantos dias você viajou:
                     <input
                         type="text"
-                        value={props.dias} 
+                        value={props.dias}
                         onChange={(e) => props.incremento(parseInt(e.target.value))}
                     />
                 </label>
@@ -104,7 +104,7 @@ function CriarComentario(props) {
 
 const mapState = (state) => {
     return {
-        dias: state.count 
+        dias: state.count
     };
 };
 

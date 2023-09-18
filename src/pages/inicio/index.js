@@ -37,23 +37,24 @@ function Inicio() {
       {loading ? (
         <p>Carregando...</p>
       ) : (
-        <div>
+        <div className='lista-paises'>
           {pais.map((pais) => (
             <div className='pais' key={pais.cca2}>
               <Link className='link' to={`/detalhes/${pais.cca2}`}>
-                <img
-                  src={pais.flags.png}
-                  alt=''
-                  width="150"
-                  height="100"
-                />
-                <h2 className='nomePais'>{pais.name.common}</h2>
+                <div className='info-pais'>
+                  <img
+                    src={pais.flags.png}
+                    alt=''
+                    width="150"
+                    height="100"
+                  />
+                  <h2 className='nomePais'>{pais.name.common}</h2>
+                </div>
               </Link>
             </div>
           ))}
         </div>
-      )
-      }
+      )}
     </div >
   );
 }

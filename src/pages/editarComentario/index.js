@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../services/firebaseConnection";
-import './editar.css'; // Estilo para a página de edição
+import './editar.css';
 
 function EditarComentario() {
   const { id } = useParams();
@@ -24,10 +24,9 @@ function EditarComentario() {
           setValor(data.valor);
           setDias(data.Dias);
         } else {
-          alert('Comentário atualizado com sucesso')
         }
       } catch (error) {
-        console.error("Erro ao buscar o comentário:", error);
+        console.error(error);
       }
     }
 
