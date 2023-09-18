@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/auth";
+
 function Comentarios() {
   const [comentarios, setComentarios] = useState([]);
   const { user } = useContext(AuthContext);
-
 
   useEffect(() => {
     consultarComentarios();
@@ -50,6 +50,7 @@ function Comentarios() {
       alert("Você precisa estar logado para excluir seus comentários.");
     }
   }
+
   return (
     <div className="tudo">
       <h1>Comentários</h1>
@@ -63,9 +64,11 @@ function Comentarios() {
               />
             </div>
             <div>
-             <Link to={`/editarComentario/${comentario.id}`}>
-              <FontAwesomeIcon icon={faEdit} className="caneta" />
-              </Link>
+              {user && user.uid === comentario.idUsuario && (
+                <Link to={`/editarComentario/${comentario.id}`}>
+                  <FontAwesomeIcon icon={faEdit} className="caneta" />
+                </Link>
+              )}
             </div>
             <div className="comentario">
               <h2><strong>Usuario:</strong> {comentario.nomeUsuario}</h2>
